@@ -45,6 +45,14 @@ Map 1: (1,10) --> (10,1)   |  Map 2: (1,10) --> (10,1)
        <img src = "Images/djk6.PNG" width = "600">
 </p>
 
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Acknowledgements
+
+ - [101 Computing - Dijkstra’s Shortest Path Algorithm](https://www.101computing.net/dijkstras-shortest-path-algorithm)
+ - [Medium Article](https://medium.com/basecs/finding-the-shortest-path-with-a-little-help-from-dijkstra-613149fbdc8e)
+ - [Planning Algorithms, LaValle, Chapter 2](http://lavalle.pl/planning/ch2.pdf)
 
 ## Support
 For any questions, email me at jaisharm@umd.edu
