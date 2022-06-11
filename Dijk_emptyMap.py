@@ -1,26 +1,11 @@
 ## ------------------------------------------------------------------------------------------
-#                                  Depth First Search [Empty Map]
+#                                  Dijkstra [Empty Map]
 ## ------------------------------------------------------------------------------------------
 
 '''
 Author: Jai Sharma
-Task: implement Depth First Search [DFS] algorithm on an empty 10 x 10 map 
+Task: implement Dijkstra Algorithm on an empty 10 x 10 map 
         between a given start and goal node
-        
---> Path is visualized using pygame. 
-    - Start Node is Red
-    - Goal Node is Green
-    - Solution Path is in Blue/Yellow
-    - Explored Nodes are in White
-    
---> 4 action steps. Search Sequence 
-    1. Up
-    2. Right
-    3. Down
-    4. Left
-    
---> Heapq: In Queue, the oldest element is dequeued first. While, in Priority Queue, 
-    an element based on the highest priority is dequeued.
 
 --> Dijkstra uses f = g, total node cost = distance to start node. No heuristic.
 '''
@@ -80,45 +65,78 @@ class Node:
 
     def moveLeft(self, pos): # Swap node with the node on Left
         row, col = pos[0], pos[1]
-        if row > 1:  # node to right exists
+        if row > 1:  # node to left exists
             leftNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1)  
             leftNode.state[0], leftNode.state[1]  = row - 1, col
             return(leftNode)    # Left is possible
         else:       
             return(False)       # Left not possible
 
-    def moveRight(self, pos): # Swap node with the node on Right
+    def moveRight(self, pos): 
         row, col = pos[0], pos[1]
-        if row < 10: # node to left exists
+        if row < 10: 
             rightNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1)  
             rightNode.state[0], rightNode.state[1]  = row + 1, col
-            return(rightNode)    # Right is possible         
+            return(rightNode)          
         else:
-            return(False)       # Right not possible
+            return(False)       
 
-    def moveUpRight(self, pos): # Swap node with the node on Right
+    def moveUpRight(self, pos): 
         row, col = pos[0], pos[1]
-        if row < 10 and col < 10: # node to left exists
+        if row < 10 and col < 10:
             uprightNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1.4)  
             uprightNode.state[0], uprightNode.state[1]  = row + 1, col + 1
-            return(uprightNode)    # Right is possible         
+            return(uprightNode)   
         else:
-            return(False)       # Right not possible
-   
-    def getNeighbours(self, pos): # check for neighbours in the 4 directions
+            return(False)     
+    
+    def moveDownRight(self, pos):
+        row, col = pos[0], pos[1]
+        if row < 10 and col > 1:
+            downrightNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1.4)  
+            downrightNode.state[0], downrightNode.state[1]  = row + 1, col - 1
+            return(downrightNode)          
+        else:
+            return(False)      
+
+    def moveUpLeft(self, pos):
+        row, col = pos[0], pos[1]
+        if row < 10 and col < 10: 
+            upleftNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1.4)  
+            upleftNode.state[0], upleftNode.state[1]  = row - 1, col + 1
+            return(upleftNode)   
+        else:
+            return(False)     
+    
+    def moveDownLeft(self, pos): 
+        row, col = pos[0], pos[1]
+        if row < 10 and col > 1: 
+            downleftNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1.4)  
+            downleftNode.state[0], downleftNode.state[1]  = row - 1, col - 1
+            return(downleftNode)    
+        else:
+            return(False)       
+  
+    def getNeighbours(self, pos): # check for neighbours in the 8 directions
         neighbours = []
         up = self.moveUp(pos) 
         down = self.moveDown(pos) 
         left = self.moveLeft(pos) 
         right = self. moveRight(pos) 
         upRight = self. moveUpRight(pos) 
-
+        downRight = self. moveDownRight(pos) 
+        upLeft = self. moveUpLeft(pos) 
+        downLeft = self. moveDownLeft(pos) 
+        
         neighbours.append(up) if up else None
         neighbours.append(right) if right else None
         neighbours.append(down) if down else None
         neighbours.append(left) if left else None
         neighbours.append(upRight) if upRight else None
-
+        neighbours.append(downRight) if downRight else None
+        neighbours.append(upLeft) if upLeft else None
+        neighbours.append(downLeft) if downLeft else None
+        
         return(neighbours)
         
 ## ------------------------------------------------------------------------------------------
