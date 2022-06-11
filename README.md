@@ -24,7 +24,7 @@ Implement Dijkstra algorithm on a map between a given start and goal node. The r
 
 ### Evaluation Function
 
-The evaluation function $f(n)$ for A* algorithm is: $ f(n) = g(n) $. Here, $g(n)$ is the operating cost function that measures the cumulative cost of each step taken to reach a given node. In the queue, the node with the smallest $f(n)$ value is explored first. 
+The evaluation function $f(n)$ for Dijkstra Algorithm is: $ f(n) = g(n) $. Here, $g(n)$ is the operating cost function that measures the cumulative cost of each individual step taken to reach a given node. In the queue, the node with the smallest $f(n)$ value is explored first. 
 
 ## Empty Map Results 
 
