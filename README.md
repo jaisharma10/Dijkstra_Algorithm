@@ -4,8 +4,8 @@
 
 Implement Dijkstra algorithm on a map between a given start and goal node. The repository contains 3 files:
 
-- **Dijk_emptyMap.py** - The 10 x 10 map is empty. The script finds dijkstra generated path between two nodes.
-- **Dijk_obsMap.py** - The 10 x 10 map has obstacles. The script finds the dijkstra generated path between the two nodes while avoiding obstacle space. There algorithm can be mplemented on two maps.  Set the variable 'mapNumber' to 1 or to 2 in the main function to switch between maps.
+- **Dijk_emptyMap.py** - The 10 x 10 map is empty. The script finds dijkstra generated path between a start and goal node.
+- **Dijk_obsMap.py** - The 10 x 10 map has obstacles. The script finds the dijkstra generated path between two nodes while avoiding obstacle space. There algorithm can be implemented on two maps.  Set the variable 'mapNumber' to 1 or to 2 in the main function to switch between maps.
 - **Dijk_Maze.py** - Maze Map of size 16 x 8. The script finds dijkstra generated path between two nodes.
         
 ### Path is visualized using pygame. 
@@ -22,6 +22,9 @@ Implement Dijkstra algorithm on a map between a given start and goal node. The r
         <img src = "Images/pete-movement-basic.png" width = "210">
 </p>
 
+### Evaluation Function
+
+The evaluation function $f(n)$ for A* algorithm is: $ f(n) = g(n) $. Here, $g(n)$ is the operating cost function that measures the cumulative cost of each step taken to reach a given node. In the queue, the node with the smallest $f(n)$ value is explored first. 
 
 ## Empty Map Results 
 
