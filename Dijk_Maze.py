@@ -1,27 +1,11 @@
 ## ------------------------------------------------------------------------------------------
-#                                  Depth First Search [Empty Map]
+#                                  Dijkstra [Maze]
 ## ------------------------------------------------------------------------------------------
 
 '''
 Author: Jai Sharma
-Task: implement Depth First Search [DFS] algorithm on an empty 10 x 10 map 
-        between a given start and goal node
+Task: implement Dijkstra Algorithm on an empty 10 x 10 map between a given start and goal node
         
---> Path is visualized using pygame. 
-    - Start Node is Red
-    - Goal Node is Green
-    - Solution Path is in Blue/Yellow
-    - Explored Nodes are in White
-    
---> 4 action steps. Search Sequence 
-    1. Up
-    2. Right
-    3. Down
-    4. Left
-    
---> Heapq: In Queue, the oldest element is dequeued first. While, in Priority Queue, 
-    an element based on the highest priority is dequeued.
-
 --> Dijkstra uses f = g, total node cost = distance to start node. No heuristic.
 '''
 
@@ -69,70 +53,70 @@ class Node:
         else:
             return(False)       # Up not possible
     
-    def moveDown(self, pos): # Swap node with the node Below
+    def moveDown(self, pos): 
         row, col = pos[0], pos[1]
         if col > 1:  # node below exists
             downNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1) 
             downNode.state[0], downNode.state[1]  = row, col - 1
-            return(downNode)    # Down is possible         
+            return(downNode)          
         else:
-            return(False)       # Down not possible
+            return(False)       
 
-    def moveLeft(self, pos): # Swap node with the node on Left
+    def moveLeft(self, pos): 
         row, col = pos[0], pos[1]
-        if row > 1:  # node to right exists
+        if row > 1: 
             leftNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1)  
             leftNode.state[0], leftNode.state[1]  = row - 1, col
-            return(leftNode)    # Left is possible
+            return(leftNode)    
         else:       
-            return(False)       # Left not possible
+            return(False)      
 
-    def moveRight(self, pos): # Swap node with the node on Right
+    def moveRight(self, pos): 
         row, col = pos[0], pos[1]
-        if row < 16: # node to left exists
+        if row < 16: 
             rightNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1)  
             rightNode.state[0], rightNode.state[1]  = row + 1, col
-            return(rightNode)    # Right is possible         
+            return(rightNode)        
         else:
-            return(False)       # Right not possible
+            return(False)       
 
-    def moveUpRight(self, pos): # Swap node with the node on Right
+    def moveUpRight(self, pos): 
         row, col = pos[0], pos[1]
-        if row < 16 and col < 8: # node to left exists
+        if row < 16 and col < 8:
             uprightNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1.4)  
             uprightNode.state[0], uprightNode.state[1]  = row + 1, col + 1
-            return(uprightNode)    # Right is possible         
+            return(uprightNode)      
         else:
-            return(False)       # Right not possible
+            return(False)     
     
-    def moveDownRight(self, pos): # Swap node with the node on Right
+    def moveDownRight(self, pos):
         row, col = pos[0], pos[1]
-        if row < 16 and col > 1: # node to left exists
+        if row < 16 and col > 1: 
             downrightNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1.4)  
             downrightNode.state[0], downrightNode.state[1]  = row + 1, col - 1
-            return(downrightNode)    # Right is possible         
+            return(downrightNode)          
         else:
-            return(False)       # Right not possible
+            return(False)       
 
-    def moveUpLeft(self, pos): # Swap node with the node on Right
+    def moveUpLeft(self, pos): 
         row, col = pos[0], pos[1]
-        if row > 1 and col < 8: # node to left exists
+        if row > 1 and col < 8:
             upleftNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1.4)  
             upleftNode.state[0], upleftNode.state[1]  = row - 1, col + 1
-            return(upleftNode)    # Right is possible         
+            return(upleftNode)    
         else:
-            return(False)       # Right not possible
-    
-    def moveDownLeft(self, pos): # Swap node with the node on Right
+            return(False)      
+
+    def moveDownLeft(self, pos): 
         row, col = pos[0], pos[1]
-        if row > 1 and col > 1: # node to left exists
+        if row > 1 and col > 1: 
             downleftNode = Node(copy.deepcopy(self.state), Node(self.state, self.parent, self.c2c), self.c2c + 1.4)  
             downleftNode.state[0], downleftNode.state[1]  = row - 1, col - 1
-            return(downleftNode)    # Right is possible         
+            return(downleftNode)   
         else:
-            return(False)       # Right not possible
+            return(False)       
   
-    def getNeighbours(self, pos): # check for neighbours in the 4 directions
+    def getNeighbours(self, pos): # check for neighbours in the 8 directions
         neighbours = []
         up = self.moveUp(pos) 
         down = self.moveDown(pos) 
@@ -176,7 +160,7 @@ def dijkstra(s, g, obsCord):
     
     while queue != []:
         time.sleep(0.1)
-        queue.sort(key = lambda x: x.c2c)                # sort queue based on c2c
+        queue.sort(key = lambda x: x.c2c)                 # sort queue based on c2c
         currentNode = queue.pop(0)                        # pop node with lowest cost 
 
         # Visualize Maze Boundary
@@ -346,7 +330,7 @@ if __name__== "__main__":
     elif s == g: # Check if start node is goal node
         print("Start node is Goal Node!!")
     else: 
-        print("Implementing Depth First Search")
+        print("Implementing Dijkstra")
         print("===============================================================================================")
         dijkstra(s, g, obsCord)
     
